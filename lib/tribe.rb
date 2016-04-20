@@ -1,6 +1,6 @@
 # tribe.rb
 class Tribe
-  attr_reader :name, :members
+  attr_accessor :name, :members
 
   def initialize(options = {})
     @name = options[:name]
