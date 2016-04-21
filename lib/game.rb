@@ -26,6 +26,6 @@ class Game
   end
 
   def individual_immunity_challenge
-    @tribes.sample.members.pop
+    @tribes.sample.members.shuffle.pop
   end
 end
