@@ -23,25 +23,34 @@ puts
 #This is where you will write your code for the three phases
 
 def phase_one
+  immune = @borneo.individual_immunity_challenge
   8.times do
-    loser = @borneo.individual_immunity_challenge
+    # Randomly choose tribe with immunity_challenge
+    tribe = @borneo.immunity_challenge
+    # Choose member to eliminate with tribal_council
+    loser = tribe.tribal_council(immune: immune)
+    tribe.members.delete(loser)
     puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
 
 def phase_two
+  immune = @borneo.individual_immunity_challenge
   3.times do
-    loser = @merge_tribe.tribal_council(immune: @merge_tribe.members.first)
+    loser = @merge_tribe.tribal_council(immune: immune)
+    @merge_tribe.members.delete(loser)
     puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
 
 # Goal is 2 finalists and 7 jury
 def phase_three
+  immune = @borneo.individual_immunity_challenge
   7.times do |n|
-    result = @merge_tribe.tribal_council(immune: @merge_tribe.members.first)
+    result = @merge_tribe.tribal_council(immune: immune)
     puts "#{result.to_s.capitalize.red} has joined the jury! The jury has #{(n + 1).to_s.green} members now."
     @jury.add_member(result)
+    @merge_tribe.members.delete(result)
   end
 end
 
@@ -51,10 +60,11 @@ puts "*" * "Phase One: Pre-Merge".length
 puts "Phase One: Pre-Merge"
 puts "*" * "Phase One: Pre-Merge".length
 phase_one #8 eliminations
-puts
+puts @borneo.tribes[0].members.length
+puts @borneo.tribes[1].members.length
 puts "The remaining 12 contestants have been merged."
 @merge_tribe = @borneo.merge("Cello") # After 8 eliminations, merge the two tribes together
-puts
+puts @merge_tribe.members.length
 puts "*" * "Phase Two: Merge".length
 puts "Phase Two: Merge"
 puts "*" * "Phase Two: Merge".length
