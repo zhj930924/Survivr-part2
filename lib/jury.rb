@@ -29,7 +29,7 @@ class Jury
 
   def announce_winner(final_votes)
     # Find finalist object with the most votes
-    winner = final_votes.key(final_votes.values.max)
+    winner = final_votes.max_by { |f, n| final_votes[f] }[0]
     puts "The WINNER is #{winner.to_s.capitalize.red}!"
     winner
   end
