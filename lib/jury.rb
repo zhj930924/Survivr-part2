@@ -16,18 +16,20 @@ class Jury
     # Each member andomly votes for a finalist
     @members.each do |member|
       votes[finalists.sample.to_s] += 1
-      puts "#{member} votes for #{finalists.sample}"
+      puts "#{member.to_s.capitalize} votes for #{finalists.sample.to_s.capitalize}"
     end
     votes
   end
 
   def report_votes(final_votes)
     # Print each finalist's votes
-    final_votes.each { |f, n| puts "#{f} has #{n} votes" }
+    final_votes.each { |f, n| puts "#{f.to_s.capitalize} has #{n} votes" }
   end
 
   def announce_winner(final_votes)
     # Find finalist object with the most votes
-    final_votes.key(final_votes.values.max)
+    winner = final_votes.key(final_votes.values.max)
+    puts "The WINNER is #{winner.to_s.capitalize}!"
+    winner
   end
 end

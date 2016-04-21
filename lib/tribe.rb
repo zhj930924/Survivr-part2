@@ -5,7 +5,11 @@ class Tribe
   def initialize(options = {})
     @name = options[:name]
     @members = options[:members]
-    puts "#{name}, #{members}"
+    puts "A new tribe has been created!"
+    puts "Tribe name is " + @name
+    puts "Tribe members are: "
+    @members.each { |m| print m.to_s.capitalize + " " }
+    puts
   end
 
   def to_s
