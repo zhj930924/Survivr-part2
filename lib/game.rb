@@ -4,8 +4,8 @@ class Game
 
   def initialize(tribe_1, tribe_2)
     @tribes = [tribe_1, tribe_2]
-    puts "A new game has been created!"
-    puts "#{@tribes[0].name} and #{@tribes[1].name} are playing."
+    puts "A new game has been created!".green
+    puts "#{@tribes[0].name.yellow} and #{@tribes[1].name.pink} are playing."
   end
 
   def add_tribe(tribe)

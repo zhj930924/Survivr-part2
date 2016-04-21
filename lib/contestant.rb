@@ -1,3 +1,4 @@
+# contestant.rb
 class Contestant
   attr_reader :name
 

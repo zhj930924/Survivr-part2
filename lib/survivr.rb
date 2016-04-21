@@ -25,14 +25,14 @@ puts
 def phase_one
   8.times do
     loser = @borneo.individual_immunity_challenge
-    puts "#{loser.to_s.capitalize} has been eliminated!"
+    puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
 
 def phase_two
   3.times do
     loser = @merge_tribe.tribal_council(immune: @merge_tribe.members.first)
-    puts "#{loser.to_s.capitalize} has been eliminated!"
+    puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
 
@@ -40,7 +40,7 @@ end
 def phase_three
   7.times do |n|
     result = @merge_tribe.tribal_council(immune: @merge_tribe.members.first)
-    puts "#{result.to_s.capitalize} has joined the jury! The jury has #{n + 1} members now."
+    puts "#{result.to_s.capitalize.red} has joined the jury! The jury has #{(n + 1).to_s.green} members now."
     @jury.add_member(result)
   end
 end
@@ -67,7 +67,7 @@ puts "*" * "Phase Three: Jury Phase".length
 phase_three #7 elminiations become jury members
 puts
 finalists = @merge_tribe.members #set finalists
-puts "The finalists are #{finalists[0].to_s.capitalize} and #{finalists[1].to_s.capitalize}."
+puts "The finalists are #{finalists[0].to_s.capitalize.pink} and #{finalists[1].to_s.capitalize.yellow}."
 puts
 puts "*" * "Final Tribal Council".length
 puts "Final Tribal Council"

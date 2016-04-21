@@ -1,14 +1,15 @@
 # tribe.rb
+require 'colorizr'
 class Tribe
   attr_accessor :name, :members
 
   def initialize(options = {})
     @name = options[:name]
     @members = options[:members]
-    puts "A new tribe has been created!"
-    puts "Tribe name is " + @name
+    puts "A new tribe has been created!".green
+    puts "Tribe name is #{@name.pink}"
     puts "Tribe members are: "
-    @members.each { |m| print m.to_s.capitalize + " " }
+    @members.each { |m| print m.to_s.capitalize.blue + ' ' }
     puts
   end
 
