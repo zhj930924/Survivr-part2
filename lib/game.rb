@@ -1,4 +1,5 @@
 # game.rb
+require "colorizr"
 class Game
   attr_reader :tribes
 

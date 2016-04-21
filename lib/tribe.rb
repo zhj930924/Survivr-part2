@@ -1,5 +1,5 @@
 # tribe.rb
-require 'colorizr'
+require "colorizr"
 class Tribe
   attr_accessor :name, :members
 

@@ -1,4 +1,5 @@
 # contestant.rb
+require "colorizr"
 class Contestant
   attr_reader :name
 
