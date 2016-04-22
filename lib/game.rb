@@ -1,7 +1,7 @@
 # game.rb
 require "colorizr"
 class Game
-  attr_reader :tribes
+  attr_accessor :tribes
 
   def initialize(tribe_1, tribe_2)
     @tribes = [tribe_1, tribe_2]
@@ -22,7 +22,9 @@ class Game
   end
 
   def merge(combined_tribe)
-    Tribe.new(name: combined_tribe, members: [tribes[0].members + tribes[1].members].flatten!)
+    tribe = Tribe.new(name: combined_tribe, members: [tribes[0].members + tribes[1].members].flatten!)
+    add_tribe(tribe)
+    tribe
   end
 
   def individual_immunity_challenge

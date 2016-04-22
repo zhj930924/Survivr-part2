@@ -1,3 +1,4 @@
+# survivr.rb
 require_relative "game"
 require_relative "tribe"
 require_relative "contestant"
@@ -7,7 +8,7 @@ require "colorizr"
 #=========================================================
 # Create an array of twenty hopefuls to compete on the island of Borneo
 @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
-@contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!
+@contestants.map! { |contestant| Contestant.new(contestant) }.shuffle!
 # Create two new tribes with names
 @coyopa = Tribe.new(name: "Pagong", members: @contestants.shift(10))
 puts
@@ -19,24 +20,22 @@ puts
 puts
 #=========================================================
 
-
 #This is where you will write your code for the three phases
 
 def phase_one
-  immune = @borneo.individual_immunity_challenge
   8.times do
     # Randomly choose tribe with immunity_challenge
     tribe = @borneo.immunity_challenge
     # Choose member to eliminate with tribal_council
-    loser = tribe.tribal_council(immune: immune)
+    loser = tribe.tribal_council
     tribe.members.delete(loser)
     puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
 
 def phase_two
-  immune = @borneo.individual_immunity_challenge
   3.times do
+    immune = @borneo.individual_immunity_challenge
     loser = @merge_tribe.tribal_council(immune: immune)
     @merge_tribe.members.delete(loser)
     puts "#{loser.to_s.capitalize.blue} has been eliminated!"
@@ -45,8 +44,8 @@ end
 
 # Goal is 2 finalists and 7 jury
 def phase_three
-  immune = @borneo.individual_immunity_challenge
   7.times do |n|
+    immune = @borneo.individual_immunity_challenge
     result = @merge_tribe.tribal_council(immune: immune)
     puts "#{result.to_s.capitalize.red} has joined the jury! The jury has #{(n + 1).to_s.green} members now."
     @jury.add_member(result)

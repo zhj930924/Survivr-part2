@@ -8,7 +8,7 @@ require_relative "../lib/jury"
 class TestSurvivr < Minitest::Test
 
   def setup
-    #testing game mechanics
+    # Testing game mechanics
     # Create an array of twenty hopefuls to compete on the island of Borneo
     @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
     @contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!

@@ -19,7 +19,7 @@ class Tribe
 
   def tribal_council(options = {})
     immune = options[:immune]
-    new_members = @members.keep_if { |name| name != immune }
+    new_members = @members.reject { |name| name == immune }
     new_members.sample
   end
 end
