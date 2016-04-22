@@ -4,7 +4,7 @@ require_relative "tribe"
 require_relative "contestant"
 require_relative "jury"
 require "colorizr"
-#After your tests pass, uncomment this code below
+# After your tests pass, uncomment this code below
 #=========================================================
 # Create an array of twenty hopefuls to compete on the island of Borneo
 @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
@@ -20,7 +20,7 @@ puts
 puts
 #=========================================================
 
-#This is where you will write your code for the three phases
+# This is where you will write your code for the three phases
 
 def phase_one
   8.times do
@@ -37,7 +37,7 @@ def phase_two
   3.times do
     immune = @borneo.individual_immunity_challenge
     loser = @merge_tribe.tribal_council(immune: immune)
-    @merge_tribe.members.delete(loser)
+    @borneo.tribes[0].members.delete(loser)
     puts "#{loser.to_s.capitalize.blue} has been eliminated!"
   end
 end
@@ -49,7 +49,7 @@ def phase_three
     result = @merge_tribe.tribal_council(immune: immune)
     puts "#{result.to_s.capitalize.red} has joined the jury! The jury has #{(n + 1).to_s.green} members now."
     @jury.add_member(result)
-    @merge_tribe.members.delete(result)
+    @borneo.tribes[0].members.delete(result)
   end
 end
 
@@ -59,29 +59,30 @@ puts "*" * "Phase One: Pre-Merge".length
 puts "Phase One: Pre-Merge"
 puts "*" * "Phase One: Pre-Merge".length
 phase_one #8 eliminations
-puts @borneo.tribes[0].members.length
-puts @borneo.tribes[1].members.length
+# puts @borneo.tribes[0].members.length
+# puts @borneo.tribes[1].members.length
 puts "The remaining 12 contestants have been merged."
 @merge_tribe = @borneo.merge("Cello") # After 8 eliminations, merge the two tribes together
-puts @merge_tribe.members.length
+# puts @merge_tribe.members.length
+puts
 puts "*" * "Phase Two: Merge".length
 puts "Phase Two: Merge"
 puts "*" * "Phase Two: Merge".length
-phase_two #3 more eliminations
+phase_two # 3 more eliminations
 puts
 @jury = Jury.new
 puts "*" * "Phase Three: Jury Phase".length
 puts "Phase Three: Jury Phase"
 puts "*" * "Phase Three: Jury Phase".length
-phase_three #7 elminiations become jury members
+phase_three # 7 elminiations become jury members
 puts
-finalists = @merge_tribe.members #set finalists
+finalists = @merge_tribe.members # Set finalists
 puts "The finalists are #{finalists[0].to_s.capitalize.pink} and #{finalists[1].to_s.capitalize.yellow}."
 puts
 puts "*" * "Final Tribal Council".length
 puts "Final Tribal Council"
 puts "*" * "Final Tribal Council".length
-vote_results = @jury.cast_votes(finalists) #Jury members report votes
-@jury.report_votes(vote_results) #Jury announces their votes
+vote_results = @jury.cast_votes(finalists) # Jury members report votes
+@jury.report_votes(vote_results) # Jury announces their votes
 puts
-@jury.announce_winner(vote_results) #Jury announces final winner
+@jury.announce_winner(vote_results) # Jury announces final winner

@@ -23,6 +23,7 @@ class Game
 
   def merge(combined_tribe)
     tribe = Tribe.new(name: combined_tribe, members: [tribes[0].members + tribes[1].members].flatten!)
+    clear_tribes
     add_tribe(tribe)
     tribe
   end
